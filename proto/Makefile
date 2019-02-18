@@ -1,5 +1,6 @@
 
-PROTOC3 ?= /opt/protobuf/bin/protoc
+#PROTOC3 ?= /opt/protobuf/bin/protoc
+PROTOC3 ?= protoc
 
 PROTO_FILE = helloworld.proto
 

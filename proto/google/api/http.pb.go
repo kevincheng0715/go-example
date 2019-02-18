@@ -3,11 +3,9 @@
 
 package google_api
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -18,14 +16,14 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 // Defines the HTTP configuration for a service. It contains a list of
 // [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method
 // to one or more HTTP REST API methods.
 type Http struct {
 	// A list of HTTP rules for configuring the HTTP REST API methods.
-	Rules                []*HttpRule `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`
+	Rules                []*HttpRule `protobuf:"bytes,1,rep,name=rules" json:"rules,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
 	XXX_sizecache        int32       `json:"-"`
@@ -35,17 +33,16 @@ func (m *Http) Reset()         { *m = Http{} }
 func (m *Http) String() string { return proto.CompactTextString(m) }
 func (*Http) ProtoMessage()    {}
 func (*Http) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ff9994be407cdcc9, []int{0}
+	return fileDescriptor_http_451f9e48d5b66785, []int{0}
 }
-
 func (m *Http) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Http.Unmarshal(m, b)
 }
 func (m *Http) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Http.Marshal(b, m, deterministic)
 }
-func (m *Http) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Http.Merge(m, src)
+func (dst *Http) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Http.Merge(dst, src)
 }
 func (m *Http) XXX_Size() int {
 	return xxx_messageInfo_Http.Size(m)
@@ -268,7 +265,7 @@ type HttpRule struct {
 	// Selects methods to which this rule applies.
 	//
 	// Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
-	Selector string `protobuf:"bytes,1,opt,name=selector,proto3" json:"selector,omitempty"`
+	Selector string `protobuf:"bytes,1,opt,name=selector" json:"selector,omitempty"`
 	// Determines the URL pattern is matched by this rules. This pattern can be
 	// used with any of the {get|put|post|delete|patch} methods. A custom method
 	// can be defined using the 'custom' field.
@@ -284,11 +281,11 @@ type HttpRule struct {
 	// The name of the request field whose value is mapped to the HTTP body, or
 	// `*` for mapping all fields not captured by the path pattern to the HTTP
 	// body. NOTE: the referred field must not be a repeated field.
-	Body string `protobuf:"bytes,7,opt,name=body,proto3" json:"body,omitempty"`
+	Body string `protobuf:"bytes,7,opt,name=body" json:"body,omitempty"`
 	// Additional HTTP bindings for the selector. Nested bindings must
 	// not contain an `additional_bindings` field themselves (that is,
 	// the nesting may only be one level deep).
-	AdditionalBindings   []*HttpRule `protobuf:"bytes,11,rep,name=additional_bindings,json=additionalBindings,proto3" json:"additional_bindings,omitempty"`
+	AdditionalBindings   []*HttpRule `protobuf:"bytes,11,rep,name=additional_bindings,json=additionalBindings" json:"additional_bindings,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
 	XXX_sizecache        int32       `json:"-"`
@@ -298,17 +295,16 @@ func (m *HttpRule) Reset()         { *m = HttpRule{} }
 func (m *HttpRule) String() string { return proto.CompactTextString(m) }
 func (*HttpRule) ProtoMessage()    {}
 func (*HttpRule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ff9994be407cdcc9, []int{1}
+	return fileDescriptor_http_451f9e48d5b66785, []int{1}
 }
-
 func (m *HttpRule) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HttpRule.Unmarshal(m, b)
 }
 func (m *HttpRule) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HttpRule.Marshal(b, m, deterministic)
 }
-func (m *HttpRule) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HttpRule.Merge(m, src)
+func (dst *HttpRule) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HttpRule.Merge(dst, src)
 }
 func (m *HttpRule) XXX_Size() int {
 	return xxx_messageInfo_HttpRule.Size(m)
@@ -319,51 +315,34 @@ func (m *HttpRule) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_HttpRule proto.InternalMessageInfo
 
-func (m *HttpRule) GetSelector() string {
-	if m != nil {
-		return m.Selector
-	}
-	return ""
-}
-
 type isHttpRule_Pattern interface {
 	isHttpRule_Pattern()
 }
 
 type HttpRule_Get struct {
-	Get string `protobuf:"bytes,2,opt,name=get,proto3,oneof"`
+	Get string `protobuf:"bytes,2,opt,name=get,oneof"`
 }
-
 type HttpRule_Put struct {
-	Put string `protobuf:"bytes,3,opt,name=put,proto3,oneof"`
+	Put string `protobuf:"bytes,3,opt,name=put,oneof"`
 }
-
 type HttpRule_Post struct {
-	Post string `protobuf:"bytes,4,opt,name=post,proto3,oneof"`
+	Post string `protobuf:"bytes,4,opt,name=post,oneof"`
 }
-
 type HttpRule_Delete struct {
-	Delete string `protobuf:"bytes,5,opt,name=delete,proto3,oneof"`
+	Delete string `protobuf:"bytes,5,opt,name=delete,oneof"`
 }
-
 type HttpRule_Patch struct {
-	Patch string `protobuf:"bytes,6,opt,name=patch,proto3,oneof"`
+	Patch string `protobuf:"bytes,6,opt,name=patch,oneof"`
 }
-
 type HttpRule_Custom struct {
-	Custom *CustomHttpPattern `protobuf:"bytes,8,opt,name=custom,proto3,oneof"`
+	Custom *CustomHttpPattern `protobuf:"bytes,8,opt,name=custom,oneof"`
 }
 
-func (*HttpRule_Get) isHttpRule_Pattern() {}
-
-func (*HttpRule_Put) isHttpRule_Pattern() {}
-
-func (*HttpRule_Post) isHttpRule_Pattern() {}
-
+func (*HttpRule_Get) isHttpRule_Pattern()    {}
+func (*HttpRule_Put) isHttpRule_Pattern()    {}
+func (*HttpRule_Post) isHttpRule_Pattern()   {}
 func (*HttpRule_Delete) isHttpRule_Pattern() {}
-
-func (*HttpRule_Patch) isHttpRule_Pattern() {}
-
+func (*HttpRule_Patch) isHttpRule_Pattern()  {}
 func (*HttpRule_Custom) isHttpRule_Pattern() {}
 
 func (m *HttpRule) GetPattern() isHttpRule_Pattern {
@@ -371,6 +350,13 @@ func (m *HttpRule) GetPattern() isHttpRule_Pattern {
 		return m.Pattern
 	}
 	return nil
+}
+
+func (m *HttpRule) GetSelector() string {
+	if m != nil {
+		return m.Selector
+	}
+	return ""
 }
 
 func (m *HttpRule) GetGet() string {
@@ -429,9 +415,9 @@ func (m *HttpRule) GetAdditionalBindings() []*HttpRule {
 	return nil
 }
 
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*HttpRule) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
+// XXX_OneofFuncs is for the internal use of the proto package.
+func (*HttpRule) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
+	return _HttpRule_OneofMarshaler, _HttpRule_OneofUnmarshaler, _HttpRule_OneofSizer, []interface{}{
 		(*HttpRule_Get)(nil),
 		(*HttpRule_Put)(nil),
 		(*HttpRule_Post)(nil),
@@ -441,12 +427,130 @@ func (*HttpRule) XXX_OneofWrappers() []interface{} {
 	}
 }
 
+func _HttpRule_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
+	m := msg.(*HttpRule)
+	// pattern
+	switch x := m.Pattern.(type) {
+	case *HttpRule_Get:
+		b.EncodeVarint(2<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.Get)
+	case *HttpRule_Put:
+		b.EncodeVarint(3<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.Put)
+	case *HttpRule_Post:
+		b.EncodeVarint(4<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.Post)
+	case *HttpRule_Delete:
+		b.EncodeVarint(5<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.Delete)
+	case *HttpRule_Patch:
+		b.EncodeVarint(6<<3 | proto.WireBytes)
+		b.EncodeStringBytes(x.Patch)
+	case *HttpRule_Custom:
+		b.EncodeVarint(8<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Custom); err != nil {
+			return err
+		}
+	case nil:
+	default:
+		return fmt.Errorf("HttpRule.Pattern has unexpected type %T", x)
+	}
+	return nil
+}
+
+func _HttpRule_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
+	m := msg.(*HttpRule)
+	switch tag {
+	case 2: // pattern.get
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Pattern = &HttpRule_Get{x}
+		return true, err
+	case 3: // pattern.put
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Pattern = &HttpRule_Put{x}
+		return true, err
+	case 4: // pattern.post
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Pattern = &HttpRule_Post{x}
+		return true, err
+	case 5: // pattern.delete
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Pattern = &HttpRule_Delete{x}
+		return true, err
+	case 6: // pattern.patch
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		x, err := b.DecodeStringBytes()
+		m.Pattern = &HttpRule_Patch{x}
+		return true, err
+	case 8: // pattern.custom
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(CustomHttpPattern)
+		err := b.DecodeMessage(msg)
+		m.Pattern = &HttpRule_Custom{msg}
+		return true, err
+	default:
+		return false, nil
+	}
+}
+
+func _HttpRule_OneofSizer(msg proto.Message) (n int) {
+	m := msg.(*HttpRule)
+	// pattern
+	switch x := m.Pattern.(type) {
+	case *HttpRule_Get:
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(len(x.Get)))
+		n += len(x.Get)
+	case *HttpRule_Put:
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(len(x.Put)))
+		n += len(x.Put)
+	case *HttpRule_Post:
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(len(x.Post)))
+		n += len(x.Post)
+	case *HttpRule_Delete:
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(len(x.Delete)))
+		n += len(x.Delete)
+	case *HttpRule_Patch:
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(len(x.Patch)))
+		n += len(x.Patch)
+	case *HttpRule_Custom:
+		s := proto.Size(x.Custom)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case nil:
+	default:
+		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
+	}
+	return n
+}
+
 // A custom pattern is used for defining custom HTTP verb.
 type CustomHttpPattern struct {
 	// The name of this custom HTTP verb.
-	Kind string `protobuf:"bytes,1,opt,name=kind,proto3" json:"kind,omitempty"`
+	Kind string `protobuf:"bytes,1,opt,name=kind" json:"kind,omitempty"`
 	// The path matched by this custom verb.
-	Path                 string   `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	Path                 string   `protobuf:"bytes,2,opt,name=path" json:"path,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -456,17 +560,16 @@ func (m *CustomHttpPattern) Reset()         { *m = CustomHttpPattern{} }
 func (m *CustomHttpPattern) String() string { return proto.CompactTextString(m) }
 func (*CustomHttpPattern) ProtoMessage()    {}
 func (*CustomHttpPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ff9994be407cdcc9, []int{2}
+	return fileDescriptor_http_451f9e48d5b66785, []int{2}
 }
-
 func (m *CustomHttpPattern) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CustomHttpPattern.Unmarshal(m, b)
 }
 func (m *CustomHttpPattern) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_CustomHttpPattern.Marshal(b, m, deterministic)
 }
-func (m *CustomHttpPattern) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CustomHttpPattern.Merge(m, src)
+func (dst *CustomHttpPattern) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CustomHttpPattern.Merge(dst, src)
 }
 func (m *CustomHttpPattern) XXX_Size() int {
 	return xxx_messageInfo_CustomHttpPattern.Size(m)
@@ -497,9 +600,9 @@ func init() {
 	proto.RegisterType((*CustomHttpPattern)(nil), "google.api.CustomHttpPattern")
 }
 
-func init() { proto.RegisterFile("google/api/http.proto", fileDescriptor_ff9994be407cdcc9) }
+func init() { proto.RegisterFile("google/api/http.proto", fileDescriptor_http_451f9e48d5b66785) }
 
-var fileDescriptor_ff9994be407cdcc9 = []byte{
+var fileDescriptor_http_451f9e48d5b66785 = []byte{
 	// 313 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0xcd, 0x4a, 0xf3, 0x40,
 	0x14, 0x86, 0xbf, 0x69, 0xd3, 0xb4, 0x3d, 0x85, 0x0f, 0x3c, 0x56, 0x19, 0x04, 0x21, 0x74, 0x55,
